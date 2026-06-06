@@ -1,0 +1,96 @@
+/* =====================================================
+   BLACKBOLD — BASE & UTILITIES
+   Element resets, the signature ambient-gradient canvas,
+   and a few reusable glass / brand helpers.
+   ===================================================== */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  font-weight: var(--fw-regular);
+  line-height: var(--lh-body);
+  color: var(--text-body);
+  background-color: var(--surface-body);
+  /* Signature ambient canvas: violet → cyan → blue radial wash, fixed */
+  background-image:
+    radial-gradient(ellipse 120% 60% at 15% 0%, var(--bg-blob-a) 0%, transparent 70%),
+    radial-gradient(ellipse 100% 70% at 90% 100%, var(--bg-blob-b) 0%, transparent 65%),
+    radial-gradient(ellipse 80% 50% at 50% 50%, var(--bg-blob-c) 0%, transparent 100%);
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5 {
+  color: var(--text-title);
+  font-weight: var(--fw-semibold);
+  line-height: var(--lh-snug);
+}
+
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+img { max-width: 100%; height: auto; display: block; }
+
+::selection {
+  color: #fff;
+  background-color: var(--color-primary);
+}
+
+::-webkit-scrollbar {
+  width: 0.6rem;
+  background-color: var(--scroll-track);
+  border-radius: var(--radius-sm);
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--scroll-thumb);
+  border-radius: var(--radius-sm);
+}
+
+/* ── Layout helpers ── */
+.bb-container {
+  max-width: var(--container-max);
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* ── Brand eyebrow: chevron-flanked uppercase caption ── */
+.bb-eyebrow {
+  position: relative;
+  display: inline-block;
+  padding: 0 1rem;
+  text-transform: uppercase;
+  letter-spacing: var(--ls-caps);
+  font-weight: var(--fw-semibold);
+  color: var(--text-title);
+}
+.bb-eyebrow::before,
+.bb-eyebrow::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  height: 0.1rem;
+  width: 2rem;
+  background-color: var(--color-primary-tint);
+}
+.bb-eyebrow::before { left: 0;  transform: translateX(-100%) translateY(-50%); }
+.bb-eyebrow::after  { right: 0; transform: translateX(100%)  translateY(-50%); }
+
+/* ── Reusable glass surface ── */
+.bb-glass {
+  background: var(--lg-bg-light);
+  backdrop-filter: blur(var(--lg-blur));
+  -webkit-backdrop-filter: blur(var(--lg-blur));
+  border: 1px solid var(--lg-border-subtle);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--lg-shadow);
+}

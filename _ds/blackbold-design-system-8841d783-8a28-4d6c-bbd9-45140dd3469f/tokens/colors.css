@@ -1,0 +1,108 @@
+/* =====================================================
+   BLACKBOLD — COLOR TOKENS
+   Brand hue 250 (violet). Glass-on-light by default,
+   Deep-Navy in dark theme. Purple-tinted shadows.
+   ===================================================== */
+
+:root {
+  /* ── Brand hue anchor ── */
+  --hue: 250; /* @kind other */
+
+  /* ── Primary (violet) scale ── */
+  --violet-100: hsl(250, 92%, 85%); /* lighter / tints */
+  --violet-300: hsl(250, 80%, 74%);
+  --violet-400: hsl(250, 72%, 68%); /* button gradient top */
+  --violet-500: hsl(250, 69%, 61%); /* PRIMARY */
+  --violet-600: hsl(250, 69%, 54%); /* button gradient bottom */
+  --violet-700: hsl(250, 57%, 53%); /* alt / pressed */
+
+  /* ── Ink / neutral (warm-violet grey) ── */
+  --ink-900: hsl(250, 8%, 18%);
+  --ink-800: hsl(250, 8%, 26%); /* titles */
+  --ink-500: hsl(250, 8%, 45%); /* body text */
+  --ink-400: hsl(250, 8%, 65%); /* muted / captions */
+  --ink-200: hsl(250, 12%, 80%);
+  --ink-100: hsl(250, 12%, 90%);
+
+  /* ── Surfaces (light) ── */
+  --white: #ffffff;
+  --body-light: hsl(250, 60%, 99%);
+  --surface-light: #ffffff;
+  --input-light: hsl(250, 70%, 96%);
+
+  /* ── Deep Navy (dark theme surfaces) — lightened so liquid glass reads ── */
+  --navy-900: #16243a; /* deepest */
+  --navy-800: #1b2d46; /* body */
+  --navy-700: #213653; /* raised */
+  --navy-600: #243a5c; /* input */
+  --navy-500: #2a4267; /* container / card */
+  --navy-400: #3a5680; /* hairline */
+  --navy-300: #4a6a98;
+
+  /* Alternate dark-surface options (pick one for the default theme) */
+  --alt-indigo-body: #211d3a;  /* Indigo Dusk — violet-tinted */
+  --alt-indigo-card: #2e2950;
+  --alt-graphite-body: #22262e; /* Graphite — neutral cool */
+  --alt-graphite-card: #2f343e;
+
+  /* ── Photography / accent (logo + portrait backdrops) ── */
+  --gold: #ffc107;      /* hero portrait backdrop */
+  --gold-deep: #f5a623;
+  --ink-black: #111111; /* logo wordmark, pure brand black */
+
+  /* ── Status ── */
+  --success: hsl(150, 60%, 45%);
+  --warning: hsl(38, 92%, 55%);
+  --danger:  hsl(2, 75%, 58%);
+  --info:    hsl(210, 80%, 58%);
+
+  /* =================================================
+     SEMANTIC ALIASES  (use these in components)
+     ================================================= */
+  --color-primary: var(--violet-500);
+  --color-primary-alt: var(--violet-700);
+  --color-primary-tint: var(--violet-100);
+
+  --text-title: var(--ink-800);
+  --text-body: var(--ink-500);
+  --text-muted: var(--ink-400);
+  --text-on-primary: #ffffff;
+
+  --surface-body: var(--body-light);
+  --surface-card: var(--surface-light);
+  --surface-input: var(--input-light);
+
+  --border-hairline: var(--ink-100);
+
+  --scroll-track: var(--ink-100);
+  --scroll-thumb: var(--ink-200);
+
+  /* Soft ambient background blobs (light) */
+  --bg-blob-a: hsl(250, 80%, 97%);
+  --bg-blob-b: hsl(185, 75%, 94%);
+  --bg-blob-c: hsl(210, 60%, 97%);
+}
+
+/* =====================================================
+   DARK THEME — Deep Navy
+   ===================================================== */
+body.dark-theme,
+.dark-theme,
+[data-theme="dark"] {
+  --text-title: #e8edf5;
+  --text-body: #8fafc8;
+  --text-muted: #6f8aa6;
+
+  --surface-body: var(--navy-800);
+  --surface-card: var(--navy-500);
+  --surface-input: var(--navy-600);
+
+  --border-hairline: var(--navy-400);
+
+  --scroll-track: var(--navy-400);
+  --scroll-thumb: var(--navy-300);
+
+  --bg-blob-a: #25406a;
+  --bg-blob-b: #1c3656;
+  --bg-blob-c: #213a5e;
+}

@@ -1,0 +1,501 @@
+/* =====================================================
+   LIQUID GLASS CSS â€” v2
+   Link SAU styles.css:
+   <link rel="stylesheet" href="liquid-glass.css" />
+   ===================================================== */
+
+/* â”€â”€ 1. CSS Variables â”€â”€ */
+:root {
+  --lg-blur: 16px;
+  --lg-blur-strong: 28px;
+
+  --lg-bg-light:  rgba(255, 255, 255, 0.15);
+  --lg-bg-medium: rgba(255, 255, 255, 0.25);
+  --lg-bg-hover:  rgba(255, 255, 255, 0.40);
+
+  --lg-border:        rgba(255, 255, 255, 0.60);
+  --lg-border-subtle: rgba(255, 255, 255, 0.25);
+
+  /* Highlight sÃ¡ng máº·t trÃªn (specular) */
+  --lg-specular-top:    rgba(255, 255, 255, 0.50);
+  --lg-specular-bottom: rgba(255, 255, 255, 0.08);
+
+  /* Shadow ngoÃ i + inner highlight + inner shadow */
+  --lg-shadow:
+    0 8px 32px  rgba(100, 80, 200, 0.15),
+    0 2px  0    rgba(255, 255, 255, 0.60) inset,
+    0 -1px 0    rgba(100, 80, 200, 0.10) inset;
+  --lg-shadow-hover:
+    0 16px 48px rgba(100, 80, 200, 0.25),
+    0 2px  0    rgba(255, 255, 255, 0.75) inset,
+    0 -1px 0    rgba(100, 80, 200, 0.15) inset;
+  --lg-shadow-pressed:
+    0 2px  8px  rgba(100, 80, 200, 0.20),
+    0 1px  0    rgba(255, 255, 255, 0.35) inset;
+
+  --lg-radius-btn:  3rem;
+  --lg-radius-card: 1.25rem;
+  --lg-radius-nav:  2rem;
+
+  --lg-ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --lg-ease-out:    cubic-bezier(0.22, 1, 0.36, 1);
+  --lg-t-slow:   0.40s;
+  --lg-t-mid:    0.28s;
+  --lg-t-fast:   0.18s;
+
+  --lg-tint:       rgba(107, 80, 220, 0.08);
+  --lg-tint-hover: rgba(107, 80, 220, 0.16);
+}
+
+/* Dark theme overrides */
+body.dark-theme {
+  /* Deep Navy glass overrides */
+  --lg-bg-light:  rgba(15, 40, 68, 0.55);
+  --lg-bg-medium: rgba(13, 33, 55, 0.70);
+  --lg-bg-hover:  rgba(20, 50, 85, 0.85);
+
+  --lg-border:        rgba(100, 160, 220, 0.30);
+  --lg-border-subtle: rgba(100, 160, 220, 0.14);
+
+  --lg-specular-top:    rgba(140, 190, 240, 0.25);
+  --lg-specular-bottom: rgba(0,   0,   0,   0.10);
+
+  --lg-shadow:
+    0 8px 32px  rgba(0, 0, 0, 0.50),
+    0 2px  0    rgba(140, 190, 240, 0.22) inset,
+    0 -1px 0    rgba(0,   0,   0,   0.30) inset;
+  --lg-shadow-hover:
+    0 16px 48px rgba(0, 0, 0, 0.60),
+    0 2px  0    rgba(140, 190, 240, 0.35) inset,
+    0 -1px 0    rgba(0,   0,   0,   0.40) inset;
+  --lg-shadow-pressed:
+    0 2px  8px  rgba(0, 0, 0, 0.40),
+    0 1px  0    rgba(140, 190, 240, 0.18) inset;
+
+  --lg-tint:       rgba(56, 138, 221, 0.14);
+  --lg-tint-hover: rgba(56, 138, 221, 0.26);
+}
+
+/* =====================================================
+   2. HEADER / NAVBAR â€” thanh kÃ­nh trong suá»‘t
+   ===================================================== */
+.header {
+  background-color: var(--lg-bg-medium) !important;
+  backdrop-filter: blur(var(--lg-blur-strong)) saturate(190%) brightness(1.05);
+  -webkit-backdrop-filter: blur(var(--lg-blur-strong)) saturate(190%) brightness(1.05);
+  border-top: 1px solid var(--lg-border);
+  /* Line sÃ¡ng trÃªn cÃ¹ng cá»§a thanh nav */
+  box-shadow:
+    0 1px 0  rgba(255, 255, 255, 0.45) inset,
+    0 -4px 24px rgba(100, 80, 200, 0.08);
+  transition:
+    background-color var(--lg-t-mid) var(--lg-ease-out),
+    box-shadow       var(--lg-t-mid) var(--lg-ease-out);
+}
+
+.header.scroll-header {
+  background-color: var(--lg-bg-hover) !important;
+  box-shadow:
+    0 1px 0  rgba(255, 255, 255, 0.55) inset,
+    0 -6px 32px rgba(100, 80, 200, 0.15);
+}
+
+/* â”€â”€ Nav logo hover â”€â”€ */
+.nav__logo {
+  transition: color var(--lg-t-fast), text-shadow var(--lg-t-mid);
+}
+.nav__logo:hover {
+  text-shadow: 0 0 18px rgba(107, 80, 220, 0.40);
+}
+
+/* â”€â”€ Nav links â€” glass pill on hover â”€â”€ */
+.nav__link {
+  position: relative;
+  padding: 0.3rem 0.8rem;
+  border-radius: var(--lg-radius-nav);
+  transition:
+    color       var(--lg-t-fast),
+    transform   var(--lg-t-mid) var(--lg-ease-spring);
+}
+
+/* Lá»›p glass pill â€” áº©n máº·c Ä‘á»‹nh, hiá»‡n khi hover/active */
+.nav__link::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--lg-radius-nav);
+  background: var(--lg-bg-light);
+  border: 1px solid var(--lg-border-subtle);
+  box-shadow: 0 1px 0 var(--lg-specular-top) inset;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  opacity: 0;
+  transform: scaleX(0.85) scaleY(0.90);
+  transition:
+    opacity   var(--lg-t-mid) var(--lg-ease-out),
+    transform var(--lg-t-mid) var(--lg-ease-spring);
+}
+
+.nav__link:hover::before,
+.nav__link.active-link::before {
+  opacity: 1;
+  transform: scaleX(1) scaleY(1);
+}
+
+.nav__link:hover { color: var(--first-color) !important; transform: translateY(-1px); }
+.nav__link.active-link { color: var(--first-color) !important; }
+
+/* â”€â”€ Dark/light toggle button â”€â”€ */
+.change-theme {
+  padding: 0.3rem;
+  border-radius: 50%;
+  transition:
+    color      var(--lg-t-fast),
+    transform  var(--lg-t-slow) var(--lg-ease-spring),
+    box-shadow var(--lg-t-mid);
+}
+.change-theme:hover {
+  transform: rotate(25deg) scale(1.18);
+  box-shadow: 0 0 16px rgba(107, 80, 220, 0.38);
+}
+
+/* â”€â”€ Hamburger toggle (mobile) â”€â”€ */
+.nav__toggle {
+  transition: transform var(--lg-t-mid) var(--lg-ease-spring);
+}
+.nav__toggle:hover { transform: scale(1.15); }
+
+/* =====================================================
+   3. MOBILE NAV MENU â€” glass tray tá»« dÆ°á»›i lÃªn
+   ===================================================== */
+@media screen and (max-width: 767px) {
+  .nav__menu {
+    background: var(--lg-bg-medium) !important;
+    backdrop-filter: blur(var(--lg-blur-strong)) saturate(190%);
+    -webkit-backdrop-filter: blur(var(--lg-blur-strong)) saturate(190%);
+    border: 1px solid var(--lg-border);
+    border-bottom: none;
+    box-shadow:
+      0 -12px 48px rgba(100, 80, 200, 0.20),
+      0  1px  0   rgba(255, 255, 255, 0.50) inset !important;
+  }
+
+  /* Mobile: pill effect khÃ´ng cáº§n backdrop lá»“ng */
+  .nav__link::before { backdrop-filter: none; -webkit-backdrop-filter: none; }
+}
+
+/* =====================================================
+   4. BUTTONS â€” Liquid Glass pill
+   ===================================================== */
+.button {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--lg-radius-btn) !important;
+
+  /* Glass tint + gradient thay vÃ¬ solid color */
+  background: linear-gradient(
+    150deg,
+    hsl(var(--hue-color), 72%, 68%) 0%,
+    hsl(var(--hue-color), 69%, 54%) 100%
+  ) !important;
+
+  border: 1px solid var(--lg-border) !important;
+  box-shadow: var(--lg-shadow);
+
+  backdrop-filter: blur(6px) saturate(140%);
+  -webkit-backdrop-filter: blur(6px) saturate(140%);
+
+  transition:
+    transform   var(--lg-t-mid)  var(--lg-ease-spring),
+    box-shadow  var(--lg-t-mid)  var(--lg-ease-out),
+    filter      var(--lg-t-fast) linear;
+}
+
+/* Specular highlight â€” vá»‡t sÃ¡ng ná»­a trÃªn */
+.button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    180deg,
+    var(--lg-specular-top)    0%,
+    var(--lg-specular-bottom) 55%,
+    transparent               100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Ripple layer theo cursor */
+.button::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    circle at var(--mx, 50%) var(--my, 50%),
+    rgba(255, 255, 255, 0.35) 0%,
+    transparent 65%
+  );
+  opacity: 0;
+  transition: opacity var(--lg-t-mid) linear;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.button > * { position: relative; z-index: 3; }
+
+.button:hover {
+  transform: translateY(-3px) scale(1.025);
+  box-shadow: var(--lg-shadow-hover);
+  filter: brightness(1.07) saturate(1.1);
+}
+.button:hover::after { opacity: 1; }
+
+.button:active {
+  transform: translateY(1px) scale(0.97);
+  box-shadow: var(--lg-shadow-pressed);
+  filter: brightness(0.94);
+  transition-duration: 0.08s;
+}
+
+/* Button --flex icon nudge on hover */
+.button--flex:hover .button__icon {
+  transform: translateX(3px);
+}
+
+/* â”€â”€ Ghost / outline button â”€â”€ */
+.button--link {
+  background: var(--lg-bg-light) !important;
+  border: 1px solid var(--lg-border-subtle) !important;
+  color: var(--first-color) !important;
+  backdrop-filter: blur(var(--lg-blur));
+  -webkit-backdrop-filter: blur(var(--lg-blur));
+  box-shadow: 0 4px 16px rgba(100, 80, 200, 0.08);
+}
+.button--link::before { display: none; }
+.button--link:hover {
+  background: var(--lg-bg-medium) !important;
+  color: var(--first-color-alt) !important;
+}
+
+/* =====================================================
+   5. HOME SOCIAL ICONS â€” glass circles
+   ===================================================== */
+.home__social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: var(--lg-bg-light);
+  border: 1px solid var(--lg-border-subtle);
+  backdrop-filter: blur(var(--lg-blur));
+  -webkit-backdrop-filter: blur(var(--lg-blur));
+  box-shadow:
+    0 4px 14px rgba(100, 80, 200, 0.12),
+    0 1px 0    var(--lg-specular-top) inset;
+  transition:
+    transform   var(--lg-t-mid)  var(--lg-ease-spring),
+    box-shadow  var(--lg-t-mid)  var(--lg-ease-out),
+    background  var(--lg-t-fast);
+}
+.home__social-icon:hover {
+  transform: translateY(-5px) scale(1.14);
+  background: var(--lg-bg-hover);
+  box-shadow:
+    0 12px 30px rgba(100, 80, 200, 0.26),
+    0 1px  0   rgba(255, 255, 255, 0.70) inset;
+}
+
+/* =====================================================
+   6. SKILLS â€” glass accordion cards
+   ===================================================== */
+.skills__content {
+  background: var(--lg-bg-light);
+  backdrop-filter: blur(var(--lg-blur));
+  -webkit-backdrop-filter: blur(var(--lg-blur));
+  border: 1px solid var(--lg-border-subtle);
+  border-radius: var(--lg-radius-card);
+  padding: 1.2rem 1.5rem;
+  box-shadow: var(--lg-shadow);
+  transition:
+    transform   var(--lg-t-mid) var(--lg-ease-spring),
+    box-shadow  var(--lg-t-mid) var(--lg-ease-out),
+    background  var(--lg-t-fast);
+  /* line sÃ¡ng trÃªn cÃ¹ng */
+  position: relative;
+  overflow: hidden;
+}
+.skills__content::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 10%; right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent,
+    var(--lg-specular-top) 40%,
+    var(--lg-specular-top) 60%,
+    transparent);
+  pointer-events: none;
+}
+.skills__content:hover {
+  transform: translateY(-4px);
+  background: var(--lg-bg-medium);
+  box-shadow: var(--lg-shadow-hover);
+}
+
+.skills__header {
+  padding: 0.4rem 0.6rem;
+  margin: -0.4rem -0.6rem;
+  border-radius: 0.75rem;
+  transition: background var(--lg-t-fast);
+  cursor: pointer;
+}
+.skills__header:hover { background: var(--lg-tint-hover); }
+
+/* =====================================================
+   7. SERVICES CARDS â€” glass tiles
+   ===================================================== */
+.services__content {
+  background: var(--lg-bg-light) !important;
+  backdrop-filter: blur(var(--lg-blur));
+  -webkit-backdrop-filter: blur(var(--lg-blur));
+  border: 1px solid var(--lg-border-subtle) !important;
+  border-radius: var(--lg-radius-card) !important;
+  box-shadow: var(--lg-shadow) !important;
+  transition:
+    transform  var(--lg-t-mid) var(--lg-ease-spring),
+    box-shadow var(--lg-t-mid) var(--lg-ease-out),
+    background var(--lg-t-fast) !important;
+  position: relative;
+  overflow: hidden;
+}
+/* Specular top edge */
+.services__content::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    var(--lg-specular-top) 35%,
+    var(--lg-specular-top) 65%,
+    transparent 100%);
+  pointer-events: none;
+}
+.services__content:hover {
+  background: var(--lg-bg-medium) !important;
+  box-shadow: var(--lg-shadow-hover) !important;
+  transform: translateY(-6px) scale(1.02);
+}
+
+/* =====================================================
+   8. ABOUT â€” info boxes
+   ===================================================== */
+.about__info > div {
+  background: var(--lg-bg-light);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--lg-border-subtle);
+  border-radius: 1rem;
+  padding: 0.75rem 1rem;
+  box-shadow:
+    0 4px 16px rgba(100, 80, 200, 0.08),
+    0 1px 0    var(--lg-specular-top) inset;
+  transition:
+    transform  var(--lg-t-mid) var(--lg-ease-spring),
+    box-shadow var(--lg-t-mid) var(--lg-ease-out);
+}
+.about__info > div:hover {
+  transform: translateY(-5px);
+  box-shadow:
+    0 12px 30px rgba(100, 80, 200, 0.18),
+    0 1px  0   rgba(255, 255, 255, 0.65) inset;
+}
+
+/* =====================================================
+   9. FOOTER â€” glass links & socials
+   ===================================================== */
+.footer__link {
+  padding: 0.15rem 0.5rem;
+  border-radius: 0.5rem;
+  transition: background var(--lg-t-fast), color var(--lg-t-fast);
+}
+.footer__link:hover {
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff !important;
+}
+
+.footer__social {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.08);
+  transition:
+    transform   var(--lg-t-mid) var(--lg-ease-spring),
+    background  var(--lg-t-fast),
+    box-shadow  var(--lg-t-mid);
+}
+
+/* Reset icon margin Ä‘á»ƒ cÄƒn giá»¯a Ä‘Ãºng trong vÃ²ng trÃ²n */
+.footer__social .footer__icon {
+  margin: 0;
+  line-height: 1;
+  font-size: 1.2rem;
+}
+.footer__social:hover {
+  transform: translateY(-4px) scale(1.12);
+  background: rgba(255, 255, 255, 0.24);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.22);
+}
+
+/* =====================================================
+   10. SCROLL UP â€” glass pill
+   ===================================================== */
+.scrollup {
+  background: var(--lg-bg-medium) !important;
+  backdrop-filter: blur(var(--lg-blur));
+  -webkit-backdrop-filter: blur(var(--lg-blur));
+  border: 1px solid var(--lg-border) !important;
+  border-radius: 0.75rem !important;
+  box-shadow: var(--lg-shadow);
+  transition:
+    transform  var(--lg-t-mid) var(--lg-ease-spring),
+    box-shadow var(--lg-t-mid) var(--lg-ease-out),
+    background var(--lg-t-fast);
+}
+.scrollup:hover {
+  transform: translateY(-5px) scale(1.1);
+  background: var(--lg-bg-hover) !important;
+  box-shadow: var(--lg-shadow-hover);
+}
+
+/* =====================================================
+   11. CURSOR RIPPLE element (cáº§n JS snippet bÃªn dÆ°á»›i)
+   ===================================================== */
+.lg-cursor-glow {
+  pointer-events: none;
+  position: fixed;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  background: radial-gradient(circle,
+    rgba(107, 80, 220, 0.07) 0%,
+    transparent 68%);
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  transition: left 0.06s linear, top 0.06s linear;
+  mix-blend-mode: screen;
+}
+body.dark-theme .lg-cursor-glow {
+  background: radial-gradient(circle,
+    rgba(56, 138, 221, 0.12) 0%,
+    transparent 68%);
+}

@@ -1,0 +1,61 @@
+/* =====================================================
+   BLACKBOLD — SPACING, RADII, SHADOW, MOTION TOKENS
+   ===================================================== */
+
+:root {
+  /* ── Spacing scale (the original's mb-* ramp) ── */
+  --sp-1: 0.25rem;  /* 4  */
+  --sp-2: 0.5rem;   /* 8  */
+  --sp-3: 0.75rem;  /* 12 */
+  --sp-4: 1rem;     /* 16 */
+  --sp-6: 1.5rem;   /* 24 */
+  --sp-8: 2rem;     /* 32 */
+  --sp-10: 2.5rem;  /* 40 */
+  --sp-12: 3rem;    /* 48 */
+
+  /* legacy aliases (codebase parity) */
+  --mb-0-25: 0.25rem;
+  --mb-0-5: 0.5rem;
+  --mb-0-75: 0.75rem;
+  --mb-1: 1rem;
+  --mb-1-5: 1.5rem;
+  --mb-2: 2rem;
+  --mb-2-5: 2.5rem;
+  --mb-3: 3rem;
+
+  /* ── Layout ── */
+  --header-height: 3rem;
+  --container-max: 1024px;
+  --gutter: 1.5rem;
+
+  /* ── Radii ── */
+  --radius-sm: 0.5rem;   /* chips, inputs */
+  --radius-md: 0.75rem;  /* buttons */
+  --radius-lg: 1rem;     /* cards / glass panels */
+  --radius-xl: 1.5rem;   /* feature cards */
+  --radius-pill: 999px;  /* nav, social bubbles */
+  --radius-blob: 60% 40% 30% 70% / 60% 30% 70% 40%; /* hero portrait blob */
+
+  /* ── Elevation — purple-tinted, soft ── */
+  --shadow-sm: 0 2px 8px hsla(250, 40%, 30%, 0.08);
+  --shadow-md: 0 8px 24px hsla(250, 45%, 30%, 0.12);
+  --shadow-lg: 0 16px 48px hsla(250, 50%, 28%, 0.16);
+  --shadow-primary: 0 8px 24px hsla(250, 69%, 55%, 0.32); /* on violet buttons */
+
+  /* ── Motion ── */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);     /* @kind other */
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);  /* @kind other */
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1); /* @kind other */
+  --dur-fast: 0.15s;  /* @kind other */
+  --dur: 0.3s;        /* @kind other */
+  --dur-slow: 0.4s;   /* @kind other */
+  /* legacy aliases (codebase parity) */
+  --t-fast: 0.18s;    /* @kind other */
+  --t-mid: 0.28s;     /* @kind other */
+  --t-slow: 0.40s;    /* @kind other */
+
+  /* ── Z-index ── */
+  --z-tooltip: 10;   /* @kind other */
+  --z-fixed: 100;    /* @kind other */
+  --z-modal: 1000;   /* @kind other */
+}
